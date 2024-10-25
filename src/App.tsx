@@ -73,6 +73,11 @@ const App: React.FC = () => (
             <Redirect to="/login" />
           </Route>
         </IonRouterOutlet>
+        <Route>
+        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
+        <Route path="/" exact component={Tab1} />
+        </Route>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
             <IonIcon aria-hidden="true" icon={cafe} />
