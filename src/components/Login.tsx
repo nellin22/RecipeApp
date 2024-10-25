@@ -1,12 +1,14 @@
 import { useRef, useState } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import './styles.css';
 
 export default function Login () {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const [error, setError] = useState<string | null>(null); // Virhetilan hallinta
+    const [loading] = useState(false);
     const history = useHistory();
 
         const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,12 +30,11 @@ export default function Login () {
                 setError(err.message); // Näytä virhe
             }
         };
-    return (
-        <>
-            <Card>
-                <Card.Body>
-                    <h2 className="text-center mb-4">Login</h2>
-                    {error && <div className="alert alert-danger">{error}</div>} {/* Näytä virhe, jos sellainen on */}
+        return (
+            <div className="auth-container">
+                <div className="auth-card">
+                    <h2 className="auth-title">Log In</h2>
+                    {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
@@ -43,13 +44,17 @@ export default function Login () {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" ref={passwordRef} required />
                         </Form.Group>
-                        <Button className="w-100" type="submit">Login</Button>
+                        <Button disabled={loading} className="w-100" type="submit">
+                            Log In
+                        </Button>
                     </Form>
-                </Card.Body>
-            </Card>
-            <div className="w-100 text-center mt-2">
-                Don't have an account? <Link to="/signup">Sign Up</Link>
+                    <div className="auth-link">
+                        <Link to="/forgot-password">Forgot Password?</Link>
+                    </div>
+                    <div className="auth-link">
+                    Need an account? <Link to="/signup">Sign Up</Link>
+                </div>
+                </div>
             </div>
-        </>
-    );
-}
+        );
+    }

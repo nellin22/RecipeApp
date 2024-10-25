@@ -7,7 +7,6 @@ import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import { Container } from 'react-bootstrap';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -44,20 +43,6 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-    <Route exact path="/login">
-      <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
-        <div className="w-100" style={{ maxWidth: "400px" }}>
-          <Login />
-        </div>
-        </Container>
-      </Route>
-      <Route exact path="/signup">
-          <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
-            <div className="w-100" style={{ maxWidth: "400px" }}>
-              <Signup />
-            </div>
-          </Container>
-        </Route>
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/tab1">
@@ -72,12 +57,12 @@ const App: React.FC = () => (
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
-        </IonRouterOutlet>
         <Route>
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/" exact component={Tab1} />
         </Route>
+        </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
             <IonIcon aria-hidden="true" icon={cafe} />
