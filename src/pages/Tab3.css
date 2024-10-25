@@ -1,0 +1,15 @@
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Roboto';
+    margin-left: 20px;
+}
+  p {
+    font-size: 16px;
+    font-family: 'Roboto';
+    margin-left: 20px;
+}
+ion-title {
+    font-family: 'Roboto';
+    font-weight: bold;
+}
